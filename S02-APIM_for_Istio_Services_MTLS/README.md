@@ -2,7 +2,7 @@
 
 In this scenario, we have several microservices which are deployed in Istio. For applying API management for those microservices, we can expose an API for those microservices. 
 
-This works only in Istio permissive mode.
+This works in Istio permissive mode and Strict MTLS mode.
 
 ### Installation Prerequisites
 
@@ -10,7 +10,7 @@ This works only in Istio permissive mode.
 
 - [Kubernetes v1.12 or above](https://Kubernetes.io/docs/setup/) 
 
-- Istio (Permissive mode only)
+- Istio
 
 - An account in DockerHub or private docker registry
 
@@ -111,8 +111,14 @@ The following artifacts resides in the demo repo. <br/>
     >> kubectl create ns wso2
     >> kubectl add api online-store-api --from-file=swagger.yaml --namespace=wso2 
    
+### Step 5: Setup routing in Istio
+
+Due to Strict MTLS in Istio, we are deploying a gateway and a virtual service in Istio.
+
+    >> kubectl create -f gateway.yaml
+    >> kubectl create -f virtualservice.yaml
    
-### Step 5: Invoke the API
+### Step 6: Invoke the API
  
  
  - Retrieve the API service endpoint details
