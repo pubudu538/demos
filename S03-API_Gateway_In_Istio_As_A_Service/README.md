@@ -49,7 +49,9 @@ Use EXTERNAL-IP as the \<ingress_gateway_host> based on the output of the follow
 
 - Add /etc/hosts entry with the external IP address as below.
 
+```
 api.wso2.com EXTERNAL-IP
+``` 
 
 - Invoke the API as a regular microservice
  
