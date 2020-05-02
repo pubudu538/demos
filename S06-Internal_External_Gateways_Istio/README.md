@@ -16,9 +16,21 @@ In this scenario, we are adding an API in Kubernetes as a private API. The same 
     
 #### 2. Deploy microservices and internal API Microgateway
 
+- Deploy microservices
+
+    ```
     apictl apply -f internal/microservices-internal.yaml
-    apictl add api -n online-store-api-internal -f online-store-api/ --namespace=micro-internal
-    apictl apply -f internal/gateway-virtualservice-internal.yaml
+    ```
+    
+    
+- Initialize the project
+  
+  ```
+  apictl init online-store-api --oas=./swagger.yaml --initial-state=PUBLISHED
+  apictl add api -n online-store-api-internal -f online-store-api/ --namespace=micro-internal
+  apictl apply -f internal/gateway-virtualservice-internal.yaml
+  ```
+
 
 #### 3. Create 2 labels in API Manager using the admin portal
 
@@ -32,20 +44,23 @@ In this scenario, we are adding an API in Kubernetes as a private API. The same 
 
 #### 4. Create roles and users using the carbon console
 
+- Add the user and role as follows using the carbon console
 
 |  User     | Role      |   
 | :------:  |:---------:|
 | developer | developer | 
 
-- Signup with an external user called John.
+- Add role mappings as follows using the admin console
+
+|  Role               |  Mapped Role                  |   
+| :------:            |:---------:                    |
+| Internal/subscriber | Internal/subscriber,developer | 
+| Internal/creator	  | Internal/creator,developer	  |
+| Internal/publisher  | Internal/publisher,developer  |
+
+- Sign up with an external user called John.
 
 #### 5. Deploy API in API Manager as a private API
-
-- Initialize the project
-
-    ```
-    apictl init online-store-api --oas=./swagger.yaml --initial-state=PUBLISHED
-    ```
     
 - Update/modify api.yaml with the following information
     
