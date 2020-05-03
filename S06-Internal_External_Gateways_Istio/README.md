@@ -117,7 +117,9 @@ In this scenario, we are adding an API in Kubernetes as a private API. The same 
 
 - Re-import the API with update flag
 
+    ```
     apictl import-api -f online-store-api/ -e dev --update -k
+    ```
 
 #### 9. Access the API in the external gateway
 
