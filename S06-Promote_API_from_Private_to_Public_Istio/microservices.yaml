@@ -17,7 +17,7 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: micro-external
+  name: micro
   labels:
     istio-injection: enabled
 
@@ -26,7 +26,7 @@ apiVersion: wso2.com/v1alpha1
 kind: TargetEndpoint
 metadata:
   name: products
-  namespace: micro-external
+  namespace: micro
   labels:
     app: products
 spec:
@@ -45,7 +45,7 @@ apiVersion: wso2.com/v1alpha1
 kind: TargetEndpoint
 metadata:
   name: inventory
-  namespace: micro-external
+  namespace: micro
   labels:
     app: inventory
 spec:
@@ -61,7 +61,7 @@ apiVersion: wso2.com/v1alpha1
 kind: TargetEndpoint
 metadata:
   name: review
-  namespace: micro-external
+  namespace: micro
   labels:
     app: review
 spec:

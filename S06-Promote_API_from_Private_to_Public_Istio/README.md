@@ -1,6 +1,13 @@
-# Internal_External_Gateways_Istio
+# Promote_API_from_Private_to_Public_Istio
 
-In this scenario, we are adding an API in Kubernetes as a private API. The same API is published to API Manager as a Private API. Then the API is promoted as a public API in Kubernetes. Also we update the API in API Manager as a public API.
+In this scenario, 
+
+1. We deploy microservices in Istio
+2. Expose an API for the microservices as a Private API
+3. Import the API as a Private API in API Manager
+4. Promote API as a Public API
+5. Change routing to expose as a Public API 
+6. Re-import the API to deploy as a Public API
 
 ### Installation Prerequisites
 
@@ -12,22 +19,21 @@ In this scenario, we are adding an API in Kubernetes as a private API. The same 
 
 #### 1. Update the default security of API Operator
 
-    apictl apply -f default-security-api-operator.yaml
+    apictl apply -f api-operator/default-security-api-operator.yaml
     
-#### 2. Deploy microservices and internal API Microgateway
+#### 2. Deploy microservices and API Microgateway
 
 - Deploy microservices
 
     ```
-    apictl apply -f internal/microservices-internal.yaml
+    apictl apply -f microservices.yaml
     ```
-    
     
 - Initialize the project
   
   ```
   apictl init online-store-api --oas=./swagger.yaml --initial-state=PUBLISHED
-  apictl add api -n online-store-api-internal -f online-store-api/ --namespace=micro-internal
+  apictl add api -n online-store-api -f online-store-api/ --namespace=micro
   apictl apply -f internal/gateway-virtualservice-internal.yaml
   ```
 
@@ -96,10 +102,8 @@ In this scenario, we are adding an API in Kubernetes as a private API. The same 
     apictl get svc istio-ingressgateway -n istio-system
     ```
 
-#### 7. Deploy microservices and external API Microgateway
+#### 7. Promote API Microgateway as a Public Gateway
 
-    apictl apply -f external/microservices-external.yaml
-    apictl add api -n online-store-api-external -f online-store-api/ --namespace=micro-external
     apictl apply -f external/gateway-virtualservice-external.yaml
 
 #### 8. Promote the API as a public API.
