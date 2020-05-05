@@ -29,7 +29,7 @@ In this scenario,
     apictl apply -f microservices.yaml
     ```
     
-- Initialize the project
+- Initialize the project, deploy and configure API Gateway
   
   ```
   apictl init online-store-api --oas=./swagger.yaml --initial-state=PUBLISHED
@@ -97,7 +97,7 @@ In this scenario,
     curl -H "Host:internal.wso2.com" http://<ISTIO_INGRESS_GATEWAY_IP>/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" 
     ```
     
-    **Note:** Use the following command get the Ingress Gateway IP address. 
+    **Note:** Use the following command to get the Ingress Gateway IP address. 
     ```
     apictl get svc istio-ingressgateway -n istio-system
     ```
