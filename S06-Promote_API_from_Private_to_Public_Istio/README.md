@@ -109,7 +109,7 @@ In this scenario,
      
     Alternative approach without adding an /etc/host entry as follows.
     ```
-    curl -v -HHost:internal.wso2.com --resolve internal.wso2.com:34.87.12.17:443 https://internal.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
+    curl -v -HHost:internal.wso2.com --resolve internal.wso2.com:<Istio_Ingress_IP:443 https://internal.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
     ```
     
 
@@ -147,7 +147,7 @@ In this scenario,
     curl -v https://external.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
     
     
-    curl -v -HHost:external.wso2.com --resolve external.wso2.com:34.87.12.17:443 https://external.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
+    curl -v -HHost:external.wso2.com --resolve external.wso2.com:<Istio_Ingress_IP>:443 https://external.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
     ```
     
 - You can use the Swagger try out console in Dev portal to access the API as well.
