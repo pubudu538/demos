@@ -16,6 +16,7 @@ In this scenario,
 - API Operator v1.1.0
 - Apictl (Set mode to Kubernetes, apictl set --mode k8s)
 - WSO2 API Manager 3.1.0 in K8s or outside
+- Follow the [readme](certs/README.md) for TLS cert configure 
 
 #### 1. Update the default security of API Operator
 
@@ -93,14 +94,24 @@ In this scenario,
 - Generate a JWT access token.
 - Access the API as follows.
 
+    - Use the following command to get the Ingress Gateway IP address. 
+        ```
+        apictl get svc istio-ingressgateway -n istio-system
+        ```
+    - Add an /etc/host entry as follows
+        ```
+        <IP>  internal.wso2.com external.wso2.com 
+        ```
+    - Access the API
+        ```
+        curl -v https://internal.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
+        ```
+     
+    Alternative approach without adding an /etc/host entry as follows.
     ```
-    curl -H "Host:internal.wso2.com" http://<ISTIO_INGRESS_GATEWAY_IP>/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" 
+    curl -v -HHost:internal.wso2.com --resolve internal.wso2.com:34.87.12.17:443 https://internal.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
     ```
     
-    **Note:** Use the following command to get the Ingress Gateway IP address. 
-    ```
-    apictl get svc istio-ingressgateway -n istio-system
-    ```
 
 #### 7. Promote API Microgateway as a Public Gateway
 
@@ -132,5 +143,11 @@ In this scenario,
 - Access the API as follows.
 
     ```
-    curl -H "Host:external.wso2.com" http://<ISTIO_INGRESS_GATEWAY_IP>/store/v1.0.0/products -H "Authorization:Bearer $TOKEN"  
+    
+    curl -v https://external.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
+    
+    
+    curl -v -HHost:external.wso2.com --resolve external.wso2.com:34.87.12.17:443 https://external.wso2.com/store/v1.0.0/products -H "Authorization:Bearer $TOKEN" -k
     ```
+    
+- You can use the Swagger try out console in Dev portal to access the API as well.

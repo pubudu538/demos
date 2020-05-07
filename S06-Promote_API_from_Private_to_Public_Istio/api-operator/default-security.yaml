@@ -1,0 +1,38 @@
+#Copyright (c)  WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+#
+# WSO2 Inc. licenses this file to you under the Apache License,
+# Version 2.0 (the "License"); you may not use this file except
+# in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+apiVersion: wso2.com/v1alpha1
+kind: Security
+metadata:
+  name: default
+  namespace: micro
+spec:
+  type: JWT
+  securityConfig:
+    - certificate: wso2am310-secret-micro
+      issuer: https://km.apim.com:9443/oauth2/token
+      audience: http://org.wso2.apimgt/gateway
+      validateSubscription: true
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wso2am310-secret-micro
+  namespace: micro
+data:
+  server.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURzVENDQXBtZ0F3SUJBZ0lFVmU0Vk1qQU5CZ2txaGtpRzl3MEJBUXNGQURCYU1Rc3dDUVlEVlFRR0V3Sk0KU3pFTE1Ba0dBMVVFQ0JNQ1YxTXhDekFKQmdOVkJBY1RBbE5NTVEwd0N3WURWUVFLRXdSSWIyMWxNUTB3Q3dZRApWUVFMRXdSSWIyMWxNUk13RVFZRFZRUUREQW9xTG1Gd2FXMHVZMjl0TUI0WERUSXdNRE13TWpBM05UTXdNMW9YCkRUSXdNRFV6TVRBM05UTXdNMW93V2pFTE1Ba0dBMVVFQmhNQ1RFc3hDekFKQmdOVkJBZ1RBbGRUTVFzd0NRWUQKVlFRSEV3SlRUREVOTUFzR0ExVUVDaE1FU0c5dFpURU5NQXNHQTFVRUN4TUVTRzl0WlRFVE1CRUdBMVVFQXd3SwpLaTVoY0dsdExtTnZiVENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFKdnNXVkN2ClFWa1RpQVkwQjRWUktoT2lxM2xrZWJiNFJnQkdRMjdNdExxMW0yd1o2STF6TTdCeUFMZ1ZBZzl6M3p6Tk9UTGwKeUJ0aHJOMUVyMXljUVora3h5WS9kd3FLK2FmaDJnM2YwTjhhaHlsLzdTS1dvaStGMUlSYVJ4YUpIdDQwRmVUbwp4bGNucWdTZlI2c0dWL2w5TU45R0xEQ1c1MEhTOG52blN6WndjQWdOdTh4UjBVUjZQcERjNUQ3SFNiWlY1SlpVCmJWazdjMXdJdGYwMlMwYzc2bjdvdmh4ZkhuUjduRUdTYmxna1kwaFZ2VVRRVzFpWHp2M3hCR01LSWloSytuRG4Kbnc4WWU2TzZKQmJHSEplckI5K09HYXd6TjhoNkVkc3ZQQVRCMjZtWlFCUVh6Q2dkVFd5aENpVTZYTUdyZHM2bwpOdVVpd3c3VmthVTJWVU1DQXdFQUFhTi9NSDB3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGCkJ3TUNNQXNHQTFVZER3UUVBd0lDcERBd0JnTlZIUkVFS1RBbmdoQndiM0owWVd4ekxtRndhVzB1WTI5dGdnMWgKY0dsekxtRndhVzB1WTI5dGh3Ui9BQUFCTUIwR0ExVWREZ1FXQkJTRExadW5HSElYb1VUVHdGOTRtaWhLSDVKNQpLekFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBZmVEYnhlMTFSbVpoVjRnb2dZQ3dpTE9DWjgySjlObnZrOHF0CnlFL0VyVENESkpKOHdva2hMWHVjaUVIVXlVNmllOVJsQUxuVGhUOGI5eW9LckFGNDl4R2NUVCtSUlBkSE83V3oKUWpPUkk1RlMrdVVzcEd5Y3NUQldSZzlTTWdGYzFEc0xBYm1pU2JVZW5kbVVHTmFKbzZ4ZFpFcG9jRENmTTB3cQpXY2VabVc5NURIdmhZV09hVVowODZNeWZ4OXd1aXA4U2E3MUVIZHFzYmttQkNtQmg0KytHZUhsbkFjZU9uT2ZWCm1lWlVTcUdWSG5tdndvTS9GcEI2N2FscWg1SzVTeDVvNUtHb0ZXQXp0REw5S2t3RDVET0ZzN2MxNWJiOFNreGMKcTBTUnlZTjFDYXVjeDRaajlWdWlMUElNaHAzWmQ0UGd6NldDNHJPTnFqZ2JYYW1IUEE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t
+type: Opaque
