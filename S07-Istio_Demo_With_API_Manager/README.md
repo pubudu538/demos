@@ -36,7 +36,7 @@ In this scenario,
   apictl apply -f gateway-virtualservice-internal.yaml
   ```
 
-#### 3. Create 2 labels in API Manager using the admin portal
+#### 3. Create a label in API Manager using the admin portal
 
 - Create two labels as follows.
 
