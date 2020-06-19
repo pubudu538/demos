@@ -6,3 +6,5 @@
 1. [Scenario 4: API Manager On Kubernetes](S04-APIManagerOnKubernetes)
 1. [Scenario 5: API Manager On Kubernetes - Single Ingress Resource](S05-WSO2APIManagerOnKubernetes-SingleIngressResource)
 1. [Scenario 6: Promote API from Private to Public Istio](S06-Promote_API_from_Private_to_Public_Istio)
+1. [Scenario 7: Istio Demo With API Manager](S07-Istio_Demo_With_API_Manager)
+
