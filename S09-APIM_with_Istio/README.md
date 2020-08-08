@@ -24,7 +24,7 @@ S09_APIM_with_Istio
 
 #### 2. Install apictl in local machine
 
-- Download from [here](https://github.com/wso2/product-apim-tooling/releases/tag/v3.2.0-beta)
+- Download relevant binary file from [here](./packs/apictl/)
 
 - Extract the API controller distribution and navigate inside the extracted folder using the command-line tool
 
