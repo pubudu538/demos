@@ -82,7 +82,7 @@ S09_APIM_with_Istio
     [Setting to K8s Mode]
     ```
     
-#### 3. Install API Manager in Kubernetes
+#### 4. Install API Manager in Kubernetes
 
 - Create a namespace called wso2 and deploy MySQL
 
@@ -100,7 +100,7 @@ Execute this once MySQL pod is ready.
     ```
 
 
-#### 4: Add /etc/host entries in the machine to access API Manager and gateways
+#### 5: Add /etc/host entries in the machine to access API Manager and gateways
 
 - Retrieve the IP address of the Ingress gateway
 
@@ -127,7 +127,7 @@ Execute this once MySQL pod is ready.
     https://apis.wso2.com/admin
     ``` 
 
-#### 4: Deploy certs for the Microgateway
+#### 6: Deploy certs for the Microgateway
 
 - Execute following command to deploy the certs
 
@@ -138,5 +138,5 @@ Execute this once MySQL pod is ready.
         -n istio-system
     ``` 
 
-#### 5: Try out the sidecar [scenario](./scenario-sidecar)
+#### 7: Try out the sidecar [scenario](./scenario-sidecar)
 

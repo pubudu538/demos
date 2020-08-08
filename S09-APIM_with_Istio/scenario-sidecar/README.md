@@ -3,15 +3,15 @@
 
 #### 1: Enable Istio sidecar injection
 
-apictl label namespace default istio-injection=enabled 
+    apictl label namespace default istio-injection=enabled 
 
 #### 2: Deploy the inventory service target endpoint
 
-apictl apply -f inventory-sidecar.yaml
+    apictl apply -f inventory-sidecar.yaml
 
 #### 3: Add an API for the inventory service
 
-apictl add api -n inventory-sc --from-file=swagger.yaml --override
+    apictl add api -n inventory-sc --from-file=swagger.yaml --override
 
 #### 4: Create a microgateway label by logging into the admin portal (https://apis.wso2.com/admin)
 
