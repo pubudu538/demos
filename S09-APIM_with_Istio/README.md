@@ -50,7 +50,7 @@ S09_APIM_with_Istio
 - Confirm configuration are correct with entering "Y".
 
     ```sh
-    >> apictl install api-operator f packs/k8s-api-operator-1.2.0-beta/api-operator/controller-artifacts/
+    apictl install api-operator -f packs/k8s-api-operator-1.2.0-beta/api-operator/controller-artifacts/
 
     Choose registry type:
     1: Docker Hub
@@ -93,12 +93,10 @@ S09_APIM_with_Istio
 
 - Deploy API Manager
 
-Execute this once MySQL pod is ready.
+Execute this command when the MySQL pod is ready.
 
-    ```
     apictl apply -f api-manager/api-portal/
-    ```
-
+    
 
 #### 5: Add /etc/host entries in the machine to access API Manager and gateways
 
@@ -107,7 +105,7 @@ Execute this once MySQL pod is ready.
 - Use EXTERNAL-IP as the \<ingress_gateway_host> based on the output of the following command.  
 
     ```
-    >> apictl get svc istio-ingressgateway -n istio-system
+    apictl get svc istio-ingressgateway -n istio-system
     Output:
     NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)                                                                                                                                      AGE
     istio-ingressgateway   LoadBalancer   10.0.32.249   34.67.171.126   15020:30939/TCP,80:30104/TCP,443:31782/TCP,15029:30155/TCP,15030:32662/TCP,15031:31360/TCP,15032:32485/TCP,31400:31905/TCP,15443:32303/TCP   13h

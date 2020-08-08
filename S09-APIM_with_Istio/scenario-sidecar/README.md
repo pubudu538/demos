@@ -15,6 +15,8 @@
 
 #### 4: Create a microgateway label by logging into the admin portal (https://apis.wso2.com/admin)
 
+- Click on the Gateways menu from the left side menu in the admin portal.
+
 - Create a label in API Manager using the admin portal
     |  Label       | Description          |   Gateway Host        |
     | :----------: |:--------------------:|:---------------------:|
@@ -33,7 +35,7 @@
 - Initialize an API project with the swagger definition.
 
     ```sh
-    >> apictl init inventory-sc \
+    apictl init inventory-sc \
               --oas=./swagger.yaml \
               --initial-state=PUBLISHED
     ```
@@ -46,12 +48,14 @@
 
 - Import the API to API Manager
     ```sh
-    >> apictl add-env \
+    apictl add-env \
             -e dev \
             --apim https://apis.wso2.com \
             --token https://apis.wso2.com/oauth2/token
+
+    apictl login dev -k
   
-    >> apictl import-api -f inventory-sc/ -e dev -k 
+    apictl import-api -f inventory-sc/ -e dev -k 
     ```
 
 #### 7: Try out in Dev Portal
