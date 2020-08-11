@@ -1,5 +1,6 @@
 ## Deploying the sidecar scenario
 
+![Alt text](sidecar.png?raw=true "Sidecar Approach")
 
 #### 1: Enable Istio sidecar injection
 
