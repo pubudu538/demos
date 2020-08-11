@@ -13,7 +13,11 @@
 
     apictl add api -n inventory-sc --from-file=swagger.yaml --override
 
-#### 4: Create a microgateway label by logging into the admin portal (https://apis.wso2.com/admin)
+#### 4: Add Gateway for Istio
+
+    apictl apply -f mg-gateway.yaml 
+
+#### 5: Create a microgateway label by logging into the admin portal (https://apis.wso2.com/admin)
 
 - Click on the Gateways menu from the left side menu in the admin portal.
 
@@ -22,13 +26,6 @@
     | :----------: |:--------------------:|:---------------------:|
     | microgateway | Microgateway for K8s | https://mg.wso2.com   |
 
-#### 5: Update the Swagger definition
-
-- Open the Swagger definition and comment the following line
-
-    ```
-    x-wso2-production-endpoints: inventory-sidecar
-    ```
 
 #### 6: Import the Swagger definition to API Manager
 
