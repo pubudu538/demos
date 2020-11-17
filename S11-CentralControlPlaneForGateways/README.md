@@ -74,11 +74,11 @@
 
 - Deploy API Manager
 
-Execute this command when the MySQL pod is ready.
-
+    ```
     kubectl apply -f api-portal/
+    ``` 
     
-
+    
 #### 4: Add /etc/host entries in the machine to access API Manager and gateways
 
 - Retrieve the IP addresses from the following command.  
