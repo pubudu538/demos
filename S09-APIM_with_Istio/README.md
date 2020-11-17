@@ -1,4 +1,4 @@
-S09_APIM_with_Istio
+# APIM with Istio
 
 ### Installation Prerequisites
 
