@@ -1,0 +1,19 @@
+namePrefix: staging-
+
+commonLabels:
+  variant: staging
+  org: acmeCorporation
+
+commonAnnotations:
+  note: Hello, I am staging!
+
+bases:
+- ../../base
+
+patchesStrategicMerge:
+- deployment-config-cm.yaml
+- params-cm.yaml
+
+configMapGenerator:
+- name: deployment-configs
+- name: params-configs

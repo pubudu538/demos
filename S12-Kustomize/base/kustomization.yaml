@@ -1,0 +1,35 @@
+
+commonLabels:
+  app: my-hello
+
+resources:
+- api.yaml
+
+configurations:
+- kustomizeconfig/api.yaml
+
+
+# kustomized-used: true
+
+#kubect label change kustomized-used: false
+
+#kubectl kustomize over/ | kubectl apply -f 
+
+#kubectl delete cm -l kustomized-used: false
+
+
+
+
+
+
+# Use Kustomized with configmap generator
+# Cons: Delete unused configmaps
+
+# Use with Kustomized/without Kustomized with same configmap name
+# Let operator watch configmaps and do rolling update 
+
+
+# Use with Kustomized/without Kustomized with same configmap name
+# Update configmaps with owner reference and update
+
+

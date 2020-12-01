@@ -1,0 +1,22 @@
+namePrefix: production-
+
+commonLabels:
+  variant: production
+  org: acmeCorporation
+
+commonAnnotations:
+  note: Hello, I am production!
+
+bases:
+- ../../base
+
+configMapGenerator:
+- name: deployment-configs
+- name: params-configs
+
+patchesStrategicMerge:
+- deployment-config-cm.yaml
+- api.yaml
+- params-cm.yaml
+
+

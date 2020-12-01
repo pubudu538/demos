@@ -1,0 +1,9 @@
+apiVersion: wso2.com/v1alpha2
+kind: API
+metadata:
+  name: petstore-api
+spec:
+    swaggerConfigMapName: deployment-configs
+    image: monopole/hello:1
+    paramsValues: params-configs
+    
