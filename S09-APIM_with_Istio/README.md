@@ -9,22 +9,23 @@
 
 #### 1. Install Istio to Kubernetes Cluster
 
-- Download Istio 1.6.7
+- Download Istio 1.8.1
 
     ```
-    curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.7 sh -
+    curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.8.1 sh -
     ```
 
 - Deploy Istio in K8s
 
     ```
-    cd istio-1.6.7/bin
-    ./istioctl install --set profile=demo
+    cd istio-1.8.1/bin
+    ./istioctl install --set profile=demo -y
     ```
 
 #### 2. Install apictl in local machine
 
-- Download relevant binary file from [here](./packs/apictl/)
+
+- Download apictl v3.2.x command line tool from [https://wso2.com/api-management/tooling/](https://wso2.com/api-management/tooling/)
 
 - Extract the API controller distribution and navigate inside the extracted folder using the command-line tool
 
@@ -50,7 +51,7 @@
 - Confirm configuration are correct with entering "Y".
 
     ```sh
-    apictl install api-operator -f packs/k8s-api-operator-1.2.0-beta/api-operator/controller-artifacts/
+    apictl install api-operator -f packs/k8s-api-operator-1.2.2/api-operator/controller-artifacts/
 
     Choose registry type:
     1: Docker Hub
