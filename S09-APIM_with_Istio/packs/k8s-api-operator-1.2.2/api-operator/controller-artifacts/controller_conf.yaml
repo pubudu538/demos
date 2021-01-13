@@ -276,7 +276,7 @@ data:
   #Gateway name
   gatewayName: "wso2-gateway"
   #Gateway host
-  host: "internal.wso2.com"
+  host: "mg.wso2.com"
   #TLS routes for Virtual Service
   tls: |
     enabled: false
@@ -284,7 +284,7 @@ data:
   #CORS policy
   corsPolicy: |
     allowOrigins:
-      - exact: https://localhost:9443
+      - regex: .*
     allowMethods:
       - GET
       - POST

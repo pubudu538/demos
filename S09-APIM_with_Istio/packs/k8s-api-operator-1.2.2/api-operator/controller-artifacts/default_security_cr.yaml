@@ -28,6 +28,9 @@ spec:
     - certificate: wso2am320-secret
       issuer: https://localhost:9443/oauth2/token
       validateSubscription: false
+    - certificate: wso2am320-secret
+      issuer: https://apis.wso2.com:443/oauth2/token
+      validateSubscription: false
 ---
 apiVersion: v1
 kind: Secret
