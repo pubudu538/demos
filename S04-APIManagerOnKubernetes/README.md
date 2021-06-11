@@ -11,6 +11,11 @@
 In this scenario, we are doing the following things.
 
 1. Deploy API Manager v3.1.0 on wso2 namespace
+
+    ```
+    kubectl apply -f api-manager/
+    ```
+    
 2. Deploy products microservice in micro namespace
 3. Access the API Manager
 
