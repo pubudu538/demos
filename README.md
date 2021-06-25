@@ -11,3 +11,6 @@
 1. [Scenario 9: APIM with Istio](S09-APIM_with_Istio)
 1. [Scenario 10: Expose Istio Ingress Gateway via Nginx Ingress](S10-Expose-Istio-Ingress-Gateway-via-Nginx-Ingress)
 1. [Scenario 11: Central Control Plane for Gateways](S11-CentralControlPlaneForGateways)
+1. [Scenario 12: Kustomize](S12-Kustomize)
+1. [Scenario 13: Deploy ELK with Filebeat](S13-Deploy_ELK_with_Filebeat)
+1. [Scenario 14: WSO2 API Manager v4.0.0 with Hashicorp Vault](S14-APIM-with-Hashicorp-Vault)
