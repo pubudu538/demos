@@ -1,0 +1,15 @@
+{
+    "Node": "hashicorp",
+    "Address": "learn.hashicorp.com",
+    "NodeMeta": {
+        "external-node": "true",
+        "external-probe": "true"
+    },
+    "Service": {
+        "ID": "google1",
+        "Service": "google",
+        "Address": "172.217.194.138",
+        "Port": 80,
+        "Tags": ["new"]
+    }
+}
