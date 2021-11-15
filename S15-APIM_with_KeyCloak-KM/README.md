@@ -2,12 +2,6 @@
 
 This demo configures WSO2 API Manager v4.0.0 with [Key Cloak](https://www.keycloak.org/) as the key manager.
 
-1. login to Keycloak 
-
-admin:admin
-http://localhost:8080/auth/admin/master/console/#/realms/master
-
-
 ### Installation Prerequisites
 
 - Docker
