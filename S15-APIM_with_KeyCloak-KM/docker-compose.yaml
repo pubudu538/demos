@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:15.0.2
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    volumes:
+      - ./data/application.keystore:/opt/jboss/keycloak/standalone/configuration/application.keystore
+    ports:
+      - "8080:8080"
+  wso2am:
+    image: wso2/wso2am:4.0.0
+    volumes:
+      - ./data/client-truststore.jks:/home/wso2carbon/wso2am-4.0.0/repository/resources/security/client-truststore.jks
+    ports:
+      - 9443:9443
+      - 8243:8243
+
