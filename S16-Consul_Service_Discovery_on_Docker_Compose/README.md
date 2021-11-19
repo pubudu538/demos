@@ -6,7 +6,7 @@ This guide helps you to deploy Consul on Docker Compose for service discovery.
 
 - Docker
 
-### Generate certs 
+### Generate certs (Optional)
 
 - Download and install Consul command line tool. Execute the following for creating certs.
 
@@ -95,7 +95,7 @@ http://localhost:8500/ui/dc1/services
 
 ### Configure Consul with Choreo Connect for Service Discovery
 
-- Add the following configurations in the adapter config.toml. Also add the certs to the adapter.
+- Add the following configurations in the adapter config.toml. 
 
 ```
 [adapter.consul]
@@ -104,12 +104,21 @@ http://localhost:8500/ui/dc1/services
   pollInterval = 5
   ACLToken = "8d9c18f5-222c-feb3-08f4-c6bdd360eea5"
   mgwServiceName = "choreo-connect"
-  serviceMeshEnabled = true
+  serviceMeshEnabled = false
   caCertFile = "/home/wso2/security/truststore/consul/consul-agent-ca.pem"
   certFile = "/home/wso2/security/truststore/consul/dc1-client-consul-0.pem"
   keyFile = "/home/wso2/security/truststore/consul/dc1-client-consul-0-key.pem"
 ```
 
+- Update the docker compose file for certs.
+
+```
+  adapter:
+    volumes:
+      - ./certs/consul-agent-ca.pem:/home/wso2/security/truststore/consul/consul-agent-ca.pem
+      - ./certs/dc1-client-consul-0.pem:/home/wso2/security/truststore/consul/dc1-client-consul-0.pem
+      - ./certs/dc1-client-consul-0-key.pem:/home/wso2/security/truststore/consul/dc1-client-consul-0-key.pem
+```
 
 
 ## References 
