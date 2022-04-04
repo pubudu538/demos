@@ -8,7 +8,7 @@
     "Service": {
         "ID": "google1",
         "Service": "google",
-        "Address": "142.251.12.138",
+        "Address": "74.125.200.130",
         "Port": 80,
         "Tags": ["new"]
     }

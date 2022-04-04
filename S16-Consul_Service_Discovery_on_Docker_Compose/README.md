@@ -12,10 +12,11 @@ This guide helps you to deploy Consul on Docker Compose for service discovery.
 
    ```
    consul tls ca create
-   consul tls cert create -server -dc dc1 -additional-dnsname docker.for.mac.localhost
+   consul tls cert create -server -dc dc1 -additional-dnsname docker.for.mac.localhost -additional-ipaddress=192.168.1.45
    consul tls cert create -client 
    ```
    For more information - https://learn.hashicorp.com/tutorials/consul/tls-encryption-secure
+   Note: additional-dnsname and additional-ipaddress fields can be used when generating the server certs to allow specific hostnames/ipaddresses.
 
 ### Start Consul
 
