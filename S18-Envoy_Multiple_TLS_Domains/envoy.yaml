@@ -1,0 +1,100 @@
+static_resources:
+  listeners:
+    - address:
+        socket_address:
+          address: 0.0.0.0
+          port_value: 8443
+      listener_filters:
+        - name: tls_inspector
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.filters.listener.tls_inspector.v3.TlsInspector
+      filter_chains:
+        - filter_chain_match:
+            server_names: "foo.com"
+          name: tls
+          transport_socket:
+            name: envoy.transport_sockets.tls
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+              common_tls_context:
+                tls_certificates:
+                  -
+                    certificate_chain:
+                      filename: /etc/certs/foo/cert.pem
+                    private_key:
+                      filename: /etc/certs/foo/key.pem
+          filters:
+          - name: envoy.filters.network.http_connection_manager
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+              stat_prefix: ingress_http
+              route_config:
+                name: local_route
+                virtual_hosts:
+                  - name: backend
+                    domains:
+                      - "foo.com:*"
+                    routes:
+                      - match:
+                          prefix: "/"
+                        route:
+                          host_rewrite_literal: www.envoyproxy.io
+                          cluster: service_envoyproxy_io
+              http_filters:
+                - name: envoy.filters.http.router
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+        - filter_chain_match:
+            server_names: "bar.com"
+          name: tls1
+          transport_socket:
+            name: envoy.transport_sockets.tls
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+              common_tls_context:
+                tls_certificates:
+                  -
+                    certificate_chain:
+                      filename: /etc/certs/bar/cert.pem
+                    private_key:
+                      filename: /etc/certs/bar/key.pem
+          filters:
+          - name: envoy.filters.network.http_connection_manager
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+              stat_prefix: ingress_http
+              route_config:
+                name: local_route
+                virtual_hosts:
+                  - name: backend
+                    domains:
+                      - "bar.com:*"
+                    routes:
+                      - match:
+                          prefix: "/docs"
+                        route:
+                          host_rewrite_literal: www.envoyproxy.io
+                          cluster: service_envoyproxy_io
+              http_filters:
+                - name: envoy.filters.http.router
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+  clusters:
+    - name: service_envoyproxy_io
+      type: LOGICAL_DNS
+      connect_timeout: 500s
+      dns_lookup_family: V4_ONLY
+      load_assignment:
+        cluster_name: service_envoyproxy_io
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: www.envoyproxy.io
+                      port_value: 443
+      transport_socket:
+        name: envoy.transport_sockets.tls
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
+          sni: www.envoyproxy.io

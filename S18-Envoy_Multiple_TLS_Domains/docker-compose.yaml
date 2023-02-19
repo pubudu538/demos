@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  # Envoy Proxy
+  envoy:
+    image: envoyproxy/envoy:v1.24.0
+    # command: -c /etc/envoy/envoy.yaml
+    command: -c /etc/envoy/envoy.yaml --component-log-level conn_handler:trace,connection:trace,client:trace,aws:trace
+    environment:
+      - AWS_ACCESS_KEY_ID=<Replace Values>
+      - AWS_SECRET_ACCESS_KEY=<Replace Values>
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./certs:/etc/certs
+    ports:
+      - 8443:8443
