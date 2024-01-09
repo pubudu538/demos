@@ -1,10 +1,13 @@
 # APK_Demo
-This demo has the following outline.
-- Install WSO2 APK 
-- Deploy backend services
-- Create and Deploy APIs in APK
+
+The AI-Powered Health and Wellness Coach App is a mobile application that delivers pertinent health-related data to users, offering customized coaching recommendations. This solution is composed of two microservices designed to enhance the user experience by providing tailored guidance on their well-being journey.
 
 [<img src="ai_health_app.png" width="250"/>](ai_health_app.png)
+
+This demo has the following outline.
+- Install WSO2 APK
+- Deploy backend services
+- Create and Deploy APIs in APK
 
 ### Installation Prerequisites
 
