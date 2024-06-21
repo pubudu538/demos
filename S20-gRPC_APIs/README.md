@@ -1,9 +1,6 @@
 # gRPC APIs with WSO2 API Microgateway v3.2.0
 
-This demo has the following outline.
-- Install WSO2 APK
-- Deploy backend services
-- Create and Deploy APIs in APK
+This demo showcases gRPC API support in WSO2 API Microgateway.
 
 ### Installation Prerequisites
 
