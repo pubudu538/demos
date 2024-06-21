@@ -1,0 +1,27 @@
+syntax = "proto3";
+package org.virajsalaka.grpc;
+
+// To import the optional extensions defined for wso2 microgateway
+import "wso2_options.proto";
+
+service HelloWorld {
+rpc hello (HelloRequest) returns (HelloReply);
+
+//production endpoint of the backend grpc server
+option (wso2.production_endpoints) = {
+url : "http://localhost:9088"; 
+};
+
+option (wso2.throttling_tier) = "3PerMin";
+
+//Security scheme is set as API-Key
+option (wso2.security) = APIKEY;
+}
+
+message HelloRequest {
+string input = 1;
+}
+
+message HelloReply {
+string output = 1;
+}

@@ -19,3 +19,4 @@
 1. [Scenario 17: Enovy proxy with AWS Lambda filter](S17-Envoy_AWS_Lambda)
 1. [Scenario 18: Enovy multiple TLS Domains](S18-Envoy_Multiple_TLS_Domains)
 1. [Scenario 19: APK Demo](S19-APK_Demo)
+1. [Scenario 20: gRPC APIs](S20-gRPC_APIs)

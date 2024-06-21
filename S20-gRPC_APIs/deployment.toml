@@ -1,0 +1,50 @@
+[kubernetes]
+    [kubernetes.kubernetesDeployment]
+        enable = true
+        name = 'k8s'
+        tag = 'v1'
+        #labels = ''
+        replicas = '1'
+        #enableLiveness = ''
+        #initialDelaySeconds = ''
+        #periodSeconds = ''
+        #livenessPort = ''
+        #imagePullPolicy = 'Always'
+        #imagePullSecrets = ['secret1']
+        #image = ''
+        #env = ''
+        buildImage = true
+        #cmd = 'CMD gateway ${APP} --b7a.config.file=conf/micro-gw.conf --b7a.log.level=DEBUG'
+        #copyFiles = ''
+        #dockerHost = ''
+        #dockerCertPath = ''
+        #push = 'false'
+        #registry = 'index.docker.io/<DOCKER_USERNAME>'
+        #username = ''
+        #password = ''
+        baseImage = 'wso2/wso2micro-gw:3.2.0'
+    [kubernetes.kubernetesDeployment.livenessProbe]
+        enable = true
+        initialDelaySeconds = '20'
+        periodSeconds = '20'
+    [kubernetes.kubernetesDeployment.readinessProbe]
+        enable = true
+        initialDelaySeconds = '30'
+        periodSeconds = '30'
+    [kubernetes.kubernetesServiceHttps]
+        enable = true
+        name = 'httpsService'
+        #labels = '{"": ""}'
+        serviceType = 'LoadBalancer'
+        #port = ''
+    [kubernetes.kubernetesServiceHttp]
+        enable = true
+        name = 'httpService'
+        #labels = '{"": ""}'
+        serviceType = 'LoadBalancer'
+        #port = ''
+    [kubernetes.kubernetesConfigMap]
+        enable = true
+        name = 'bal-config-map'
+        ballerinaConf = '/Users/pubudug/Documents/wso2am-micro-gw-toolkit-macos-3.2.0/resources/conf/micro-gw.conf'
+        
