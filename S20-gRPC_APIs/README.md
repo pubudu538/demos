@@ -24,6 +24,12 @@ This demo showcases gRPC API support in WSO2 API Microgateway.
    java -jar serverImpl/target/serverImpl-1.0-SNAPSHOT.jar 9088
    ```
 
+- Run gRPC Client for verification
+
+   ```
+   java -jar clientImpl/target/clientImpl-1.0-SNAPSHOT.jar World sometoken-dummy 9088
+   ```
+
 ### Setup the API Microgateway Project using the Microgateway toolkit
 
 
@@ -48,6 +54,9 @@ This demo showcases gRPC API support in WSO2 API Microgateway.
    ├── interceptors
    ├── lib
    └── policies.yaml
+
+   mkdir -p grpcapi/grpc_definitions/HelloWorld
+   cp wso2_hello_world.proto grpcapi/grpc_definitions/HelloWorld
    ```
 
 - Update policies.yaml by adding 3PerMin under resourcePolicies.
