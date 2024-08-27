@@ -1,0 +1,24 @@
+---
+kind: "API"
+apiVersion: "dp.wso2.com/v1alpha1"
+metadata:
+  name: "3e65a0bbb0f68bcee011d2dbed6a553aaf971b7b"
+  labels:
+    api-name: "b244b5945bcfcbdd4d06040e3d7d9fd09086401f"
+    api-version: "fe753b23556364128df95d2ef135d87743e9d4a7"
+    organization: "7505d64a54e061b7acd54ccd58b49dc43500b635"
+    managed-by: "apk"
+spec:
+  apiName: "Wellness Recommendation Service"
+  apiType: "REST"
+  apiVersion: "0.1.0"
+  basePath: "/V2VsbG5lc3MgUmVjb21tZW5kYXRpb24gU2VydmljZTAuMS4w/0.1.0"
+  organization: "default"
+  isDefaultVersion: false
+  definitionFileRef: "3e65a0bbb0f68bcee011d2dbed6a553aaf971b7b-definition"
+  production:
+  - httpRouteRefs:
+    - "01eeaed4-a041-1550-8c53-98ed46ba1562"
+  sandbox: null
+  apiProperties: []
+status: null

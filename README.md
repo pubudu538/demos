@@ -20,3 +20,4 @@
 1. [Scenario 18: Enovy multiple TLS Domains](S18-Envoy_Multiple_TLS_Domains)
 1. [Scenario 19: APK Demo](S19-APK_Demo)
 1. [Scenario 20: gRPC APIs](S20-gRPC_APIs)
+1. [Scenario 20: APK with CP Demo](S21-APK_with_CP_Demo)

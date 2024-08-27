@@ -1,0 +1,272 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-server-conf
+  namespace: prometheus
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: 'adapter'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*adapter.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18006'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'enforcer'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*gateway.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18006'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'config-ds-bal-metrics'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*config-ds.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18006'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'config-ds-jvm-metrics'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*config-ds.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18007'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'common-controller'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*common-controller.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18006'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'router'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*gateway.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '9000'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /stats/prometheus
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'idp-ds-bal-metrics'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*idpds.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18006'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'idp-ds-jvm-metrics'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*idpds.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18007'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'ratelimiter'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*ratelimiter.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '9102'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+      - job_name: 'apim-apk-agent'
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - 'apk'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_name]
+            regex: '.*apim-apk-agent.*'
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            regex: '18006'
+            action: keep
+          - target_label: __metrics_path__
+            replacement: /metrics
+          - source_labels: [__meta_kubernetes_pod_container_id, __meta_kubernetes_pod_container_port_number]
+            replacement: '$1/$2'
+            target_label: instance
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+  namespace: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-server
+  template:
+    metadata:
+      labels:
+        app: prometheus-server
+    spec:
+      serviceAccountName: prometheus
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v2.30.0
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus
+            - name: prometheus-storage
+              mountPath: /prometheus
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            name: prometheus-server-conf
+        - name: prometheus-storage
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: prometheus
+spec:
+  selector:
+    app: prometheus-server
+  type: ClusterIP
+  ports:
+    - port: 9090
+      targetPort: 9090
+      nodePort: 30000
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: prometheus
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+  - apiGroups: [""]
+    resources:
+      - nodes
+      - services
+      - endpoints
+      - pods
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prometheus

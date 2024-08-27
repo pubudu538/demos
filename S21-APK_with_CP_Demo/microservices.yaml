@@ -1,0 +1,112 @@
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  labels:
+    app: "wellness_recommendation_microservice"
+  name: "wellness-recommendation-service"
+  namespace: "apk"
+spec:
+  ports:
+  - name: "port-1-wellness"
+    port: 9090
+    protocol: "TCP"
+    targetPort: 9090
+  selector:
+    app: "wellness_recommendation_microservice"
+  type: "ClusterIP"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  labels:
+    app: "wellness_recommendation_microservice"
+  name: "wellness-recomm-deployment"
+  namespace: "apk"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "wellness_recommendation_microservice"
+  template:
+    metadata:
+      labels:
+        app: "wellness_recommendation_microservice"
+    spec:
+      containers:
+      - image: "pubudu/wellness_recommendation_microservice:0.1.0"
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - "sleep"
+              - "15"
+        name: "wellness-recomm-deployment"
+        ports:
+        - containerPort: 9090
+          name: "port-1-wellness"
+          protocol: "TCP"
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "100Mi"
+            cpu: "200m"
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  labels:
+    app: "health_data_microservice"
+  name: "health-data-service"
+  namespace: "apk"
+spec:
+  ports:
+  - name: "port-1-health"
+    port: 9090
+    protocol: "TCP"
+    targetPort: 9090
+  selector:
+    app: "health_data_microservice"
+  type: "ClusterIP"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  labels:
+    app: "health_data_microservice"
+  name: "health-data-mic-deployment"
+  namespace: "apk"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "health_data_microservice"
+  template:
+    metadata:
+      labels:
+        app: "health_data_microservice"
+    spec:
+      containers:
+      - image: "pubudu/health_data_microservice:0.1.0"
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - "sleep"
+              - "15"
+        name: "health-data-mic-deployment"
+        ports:
+        - containerPort: 9090
+          name: "port-1-health-d"
+          protocol: "TCP"
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "100Mi"
+            cpu: "200m"

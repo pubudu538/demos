@@ -1,0 +1,16 @@
+---
+apiVersion: "dp.wso2.com/v1alpha1"
+kind: "Backend"
+metadata:
+  name: "backend-f7b8294da1015579cda8b518fa0504d2476010a1-api"
+  labels:
+    api-name: "b244b5945bcfcbdd4d06040e3d7d9fd09086401f"
+    api-version: "fe753b23556364128df95d2ef135d87743e9d4a7"
+    organization: "7505d64a54e061b7acd54ccd58b49dc43500b635"
+    managed-by: "apk"
+spec:
+  services:
+  - host: "wellness-recommendation-service"
+    port: 9090
+  basePath: ""
+  protocol: "http"
